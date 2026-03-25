@@ -48,7 +48,6 @@
         #header img {
             width: 55px;
             height: auto;
-            display: block;
         }
     </style>
 
@@ -75,28 +74,14 @@
     <script src="js/labelgun.min.js"></script>
     <script src="js/labels.js"></script>
     <script src="js/leaflet.wms.js"></script>
-    <script src="js/leaflet.photon.js"></script>
-    <script src="js/leaflet-measure.js"></script>
-
-    <script src="data/labbeloyper_routetracks_1.js"></script>
-    <script src="data/Renset_2.js"></script>
-    <script src="data/Fiksedegeometrier_3.js"></script>
-    <script src="data/Fiksedegeometrier_4.js"></script>
-
-    <script>
-
-        /* ✅ Hele kartkoden din — uendret */
-
-        var map = L.map('map', {
-            zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[59.766484569303195,9.833903970664549],[59.8152365260012,10.048188112350752]]);
+    <script src="js/leaf365260012,10.048188112350752]]);
 
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web">qgis2web</a> · <a href="https://leafletjs.com">Leaflet</a> · <a href="https://qgis.org">QGIS</a>');
 
         var autolinker = new Autolinker({truncate:{length:30,location:'smart'}});
 
-        var zoomControl = L.control.zoom({position:'topleft'}).addTo(map);
+        L.control.zoom({position:'topleft'}).addTo(map);
 
         var measureControl = new L.Control.Measure({
             position:'topleft',
@@ -106,10 +91,9 @@
             secondaryAreaUnit:'hectares'
         });
         measureControl.addTo(map);
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML='';
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className+=' fas fa-ruler';
 
-        var bounds_group = new L.featureGroup([]);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML='';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].classList.add('fas','fa-ruler');
 
         map.createPane('pane_Topografisknorgeskart_0');
         map.getPane('pane_Topografisknorgeskart_0').style.zIndex=400;
@@ -123,41 +107,35 @@
             tiled:true,
             info_format:'text/html',
             opacity:1,
-            identify:false,
+            identify:false
         });
-
         map.addLayer(layer_Topografisknorgeskart_0);
 
-        /* ✅ Løypelag */
         var layer_labbeloyper_routetracks_1 = new L.geoJson(json_labbeloyper_routetracks_1,{
             pane:'pane_labbeloyper_routetracks_1',
             style:function(){return {color:'rgba(249,10,5,1.0)',weight:4,opacity:1}},
             onEachFeature:pop_labbeloyper_routetracks_1
-        });
-        map.addLayer(layer_labbeloyper_routetracks_1);
+        }).addTo(map);
 
         var layer_Renset_2 = new L.geoJson(json_Renset_2,{
             pane:'pane_Renset_2',
             style:function(){return {color:'rgba(183,72,75,1.0)',weight:1}},
             onEachFeature:pop_Renset_2
-        });
-        map.addLayer(layer_Renset_2);
+        }).addTo(map);
 
         var layer_Fiksedegeometrier_3 = new L.geoJson(json_Fiksedegeometrier_3,{
             pane:'pane_Fiksedegeometrier_3',
             style:function(){return {color:'rgba(72,123,182,1.0)',weight:3}},
             onEachFeature:pop_Fiksedegeometrier_3
-        });
-        map.addLayer(layer_Fiksedegeometrier_3);
+        }).addTo(map);
 
         var layer_Fiksedegeometrier_4 = new L.geoJson(json_Fiksedegeometrier_4,{
             pane:'pane_Fiksedegeometrier_4',
             style:function(){return {color:'rgba(6,25,238,1.0)',weight:3}},
             onEachFeature:pop_Fiksedegeometrier_4
-        });
-        map.addLayer(layer_Fiksedegeometrier_4);
-
+        }).addTo(map);
     </script>
 
 </body>
 </html>
+
