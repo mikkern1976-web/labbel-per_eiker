@@ -20,12 +20,13 @@
             margin: 0;
         }
         <style>
-  /* Liten glass-chip med logo, øverst til venstre */
+  <style>
+  /* Liten glass-chip med logo, øverst til høyre */
   #brand-logo {
     position: absolute;
     top: 12px;
-    left: 12px;
-    z-index: 11000;              /* Over Leaflet-kontroller */
+    right: 12px;             /* <- høyre side for å unngå zoom-knapper */
+    z-index: 11000;          /* over Leaflet-kontroller */
     width: 65px;
     height: 65px;
     padding: 6px;
@@ -44,17 +45,17 @@
   }
 
   #brand-logo img {
-    width: 55px;       /* ca. 3× mindre enn utgangspunktet */
+    width: 55px;  /* ca. 3× mindre */
     height: auto;
     display: block;
   }
 
-  /* Bonus: gjør at logoen ikke stjeler museklikk fra kartet */
+  /* Ikke stjel klikk fra kartet */
   #brand-logo, #brand-logo * {
     pointer-events: none;
   }
 
-  /* (Valgfritt) mørk/lys auto-justering av chip */
+  /* (Valgfritt) litt mørkere chip i mørk modus */
   @media (prefers-color-scheme: dark) {
     #brand-logo {
       background: rgba(32,32,32,0.35);
