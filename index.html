@@ -19,55 +19,11 @@
             padding: 0;
             margin: 0;
         }
-        <style>
-  <style>
-  /* Liten glass-chip med logo, øverst til høyre */
-  #brand-logo {
-    position: absolute;
-    top: 12px;
-    right: 12px;             /* <- høyre side for å unngå zoom-knapper */
-    z-index: 11000;          /* over Leaflet-kontroller */
-    width: 65px;
-    height: 65px;
-    padding: 6px;
-    border-radius: 12px;
-
-    /* Glassmorphism */
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #brand-logo img {
-    width: 55px;  /* ca. 3× mindre */
-    height: auto;
-    display: block;
-  }
-
-  /* Ikke stjel klikk fra kartet */
-  #brand-logo, #brand-logo * {
-    pointer-events: none;
-  }
-
-  /* (Valgfritt) litt mørkere chip i mørk modus */
-  @media (prefers-color-scheme: dark) {
-    #brand-logo {
-      background: rgba(32,32,32,0.35);
-    }
-  }
+        <style>}
 </style>
         <title></title>
     </head>
     <body>
-		<!-- Flytende logo-overlay (påvirker ikke kartkoden) -->
-<div id="brand-logo">
-  EIKER_transp.png
 </div>
         <div id="map">
         </div>
