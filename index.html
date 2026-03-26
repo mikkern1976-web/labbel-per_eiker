@@ -21,6 +21,42 @@
         }
         <style>}
 </style>
+		
+* Leaflet-kontroll for logo (glassmorphism) */
+  .leaflet-control.brand-logo {
+    padding: 6px;
+    width: 65px;
+    height: 65px;
+    border-radius: 12px;
+
+    /* Glass-effekt */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Fjern standard Leaflet-bar-stil */
+    border: none;
+  }
+
+  .leaflet-control.brand-logo img {
+    width: 55px;       /* ca. 3× mindre */
+    height: auto;
+    display: block;
+  }
+
+  /* (Valgfritt) litt mørkere chip i mørk modus */
+  @media (prefers-color-scheme: dark) {
+    .leaflet-control.brand-logo {
+      background: rgba(32, 32, 32, 0.35);
+    }
+  }
+
         <title></title>
     </head>
     <body>
@@ -58,6 +94,32 @@
              var key = td ? td.id : '';
              if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
                  rows[i].parentNode.removeChild(rows[i]);
+				 <script>
+  // Leaflet-kontroll som viser logoen i topprhjørnet
+  const LogoControl = L.Control.extend({
+    options: {
+      position: 'topright' // endre til 'topleft' om du vil
+    },
+    onAdd: function (map) {
+      // Ytre container
+      const container = L.DomUtil.create('div', 'leaflet-control brand-logo');
+
+      // Bildet
+      const img = L.DomUtil.create('img', '', container);
+      img.src = 'EIKER_transp.png'; // endre sti hvis bildet ligger i /images/
+      img.alt = 'Labbeløyper Øvre Eiker';
+
+      // Sørg for at kontrollen ikke fanger klikk/scroll som tilhører kartet
+      L.DomEvent.disableClickPropagation(container);
+      L.DomEvent.disableScrollPropagation(container);
+
+      return container;
+    }
+  });
+
+  // Legg til kontrollen på kartet
+  map.addControl(new LogoControl());
+</script>
              }
          }
          return tempDiv.innerHTML;
